@@ -16,7 +16,7 @@ func _physics_process(delta):
 		velocity.x = -move_speed
 		
 	move_and_slide(velocity, UP)
-	print(get_slide_collision(1))
+	
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_speed

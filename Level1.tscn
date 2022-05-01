@@ -39,7 +39,7 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="floor2" type="StaticBody2D" parent="."]
-position = Vector2( 904, 312 )
+position = Vector2( 954.912, 304.929 )
 rotation = -1.5708
 __meta__ = {
 "_edit_group_": true
@@ -73,6 +73,9 @@ collision_mask = 3
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Player"]
 occluder = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 117.892, 387.294 )
