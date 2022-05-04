@@ -81,6 +81,9 @@ occluder = SubResource( 2 )
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 
+[node name="control_timer" type="Timer" parent="Player"]
+one_shot = true
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 117.892, 387.294 )
 rotation = -1.5708
