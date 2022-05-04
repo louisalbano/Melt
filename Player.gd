@@ -6,8 +6,12 @@ var jump_speed = -1200
 var move_speed = 500
 const UP = Vector2(0,-1)
 var in_shadow = 0
+onready var collision_ray = get_node("collision_ray")
 
 func _physics_process(delta):
+	var space_rid = get_world_2d().space
+	var space_state = Physics2DServer.space_get_direct_state(space_rid)
+	
 	velocity.y += delta * GRAVITY
 	
 	if Input.is_action_pressed("right"):
@@ -23,12 +27,18 @@ func _physics_process(delta):
 			
 		if is_on_wall():
 			velocity.y = jump_speed
+			if collision_ray.is_colliding():
+				print("collision")
+				velocity.x = jump_speed + 10
+			else:
+				velocity.x = -jump_speed - 10
 			
-			velocity.x = jump_speed + 10
+			
+			
 	
 	velocity.x = lerp(velocity.x, 0, 0.06)
 	
-	
+
 
 
 func _on_Shadow_body_entered(_body):
