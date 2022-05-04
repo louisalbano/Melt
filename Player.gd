@@ -8,6 +8,7 @@ const UP = Vector2(0,-1)
 var in_shadow = 0
 var ignore_control = false
 
+#This is how you reference the nodes created under the parent node
 onready var control_timer = get_node("control_timer")
 onready var collision_ray = get_node("collision_ray")
 
@@ -26,18 +27,18 @@ func _physics_process(delta):
 			velocity.y = jump_speed
 			
 		else:
-			if is_on_wall():
+			if is_on_wall(): 
 				ignore_control = true
-				print("ignore control")
+
 				velocity.y = jump_speed
 				if collision_ray.is_colliding():
-					print("collision")
 					velocity.x = -1000
 				else:
 					velocity.x = 1000
 					
-				control_timer.start(.15)			
-	if control_timer.is_stopped():
+				control_timer.start(.15)
+				
+	if control_timer.is_stopped(): #we meatboy now 
 		ignore_control = false
 			
 	
