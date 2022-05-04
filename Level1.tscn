@@ -115,9 +115,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Shadow" type="Area2D" parent="." groups=[
-"Shadow",
-]]
+[node name="Shadow" type="Area2D" parent="." groups=["Shadow"]]
 collision_layer = 3
 collision_mask = 3
 
@@ -125,6 +123,10 @@ collision_mask = 3
 position = Vector2( 516.299, 341.683 )
 scale = Vector2( 17.2874, 11.0826 )
 polygon = PoolVector2Array( 3.95934, -6.15398, 6.31439, 13.4786, 17.9793, 13.3237, 18.4757, 13.0871, 21.3327, 13.328, 20.7981, 6.42563, 4.34299, -8.43976, 4.32255, -6.37765 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
 [connection signal="body_entered" from="Shadow" to="Player" method="_on_Shadow_body_entered"]
 [connection signal="body_exited" from="Shadow" to="Player" method="_on_Shadow_body_exited"]
