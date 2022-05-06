@@ -7,6 +7,8 @@ var move_speed = 500
 const UP = Vector2(0,-1)
 var in_shadow = 0
 var ignore_control = false
+const max_health = 100
+var current_health = max_health
 
 #This is how you reference the nodes created under the parent node
 onready var control_timer = get_node("control_timer")
@@ -20,7 +22,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("left") and !ignore_control:
 		velocity.x = -move_speed
 		
-	move_and_slide(velocity, UP)
+	move_and_slide(velocity, UP, false, 3)
 	
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():

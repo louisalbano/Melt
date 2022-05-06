@@ -115,7 +115,9 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Shadow" type="Area2D" parent="." groups=["Shadow"]]
+[node name="Shadow" type="Area2D" parent="." groups=[
+"Shadow",
+]]
 collision_layer = 3
 collision_mask = 3
 
