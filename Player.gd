@@ -11,6 +11,8 @@ var ignore_control = false
 #This is how you reference the nodes created under the parent node
 onready var control_timer = get_node("control_timer")
 onready var collision_ray = get_node("collision_ray")
+onready var pause_popup = get_node("CanvasLayer/PausePopup")
+onready var resume_buton = get_node("CanvasLayer/PausePopup/ColorRect/pauseOptions/PauseResumeButton")
 
 func _physics_process(delta):
 	velocity.y += delta * GRAVITY
@@ -19,6 +21,11 @@ func _physics_process(delta):
 		velocity.x = move_speed
 	if Input.is_action_pressed("left") and !ignore_control:
 		velocity.x = -move_speed
+		
+	if Input.is_action_just_pressed("pause"):
+		pause_popup.show()
+		resume_buton.grab_focus()
+		get_tree().paused = true
 		
 	move_and_slide(velocity, UP)
 	
