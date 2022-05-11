@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/images/light.png" type="Texture" id=3]
 [ext_resource path="res://Assets/images/caster.png" type="Texture" id=4]
 [ext_resource path="res://Assets/images/background.png" type="Texture" id=5]
+[ext_resource path="res://PauseResumeButton.gd" type="Script" id=6]
+[ext_resource path="res://PixeloidTheme.tres" type="Theme" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 314.036, 16.2683 )
@@ -18,7 +20,7 @@ polygon = PoolVector2Array( -16, -16, -8, -16, 0, -16, 16, -16, 16, 16, -16, 16 
 [node name="Level1" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 512.773, 298.959 )
+position = Vector2( 512, 301.791 )
 scale = Vector2( 7.98792, 4.70376 )
 texture = ExtResource( 5 )
 __meta__ = {
@@ -67,7 +69,7 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 449.098, 444.856 )
+position = Vector2( 450.042, 444.856 )
 collision_layer = 3
 collision_mask = 3
 
@@ -83,6 +85,92 @@ current = true
 
 [node name="control_timer" type="Timer" parent="Player"]
 one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+pause_mode = 2
+
+[node name="PausePopup" type="Popup" parent="Player/CanvasLayer"]
+pause_mode = 2
+margin_left = 414.854
+margin_top = 444.856
+margin_right = 414.854
+margin_bottom = 444.856
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Player/CanvasLayer/PausePopup"]
+light_mask = 11
+anchor_right = 3.775
+anchor_bottom = 2.45
+margin_left = -415.0
+margin_top = -445.0
+margin_right = 609.0
+margin_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color( 0, 0, 0, 0.67451 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Player/CanvasLayer/PausePopup/ColorRect"]
+margin_top = 120.0
+margin_right = 1021.0
+margin_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme = ExtResource( 7 )
+text = "PAUSED"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pauseOptions" type="VBoxContainer" parent="Player/CanvasLayer/PausePopup/ColorRect"]
+anchor_top = 0.47
+anchor_right = 1.0
+anchor_bottom = 0.756
+margin_left = 276.0
+margin_top = -42.0
+margin_right = -277.0
+margin_bottom = 29.4
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 7 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseResumeButton" type="Button" parent="Player/CanvasLayer/PausePopup/ColorRect/pauseOptions"]
+margin_right = 471.0
+margin_bottom = 119.0
+focus_neighbour_top = NodePath("../PauseQuitButton")
+focus_neighbour_bottom = NodePath("../PauseQuitButton")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Resume"
+script = ExtResource( 6 )
+
+[node name="PauseQuitButton" type="Button" parent="Player/CanvasLayer/PausePopup/ColorRect/pauseOptions"]
+margin_top = 123.0
+margin_right = 471.0
+margin_bottom = 243.0
+focus_neighbour_top = NodePath("../PauseResumeButton")
+focus_neighbour_bottom = NodePath("../PauseResumeButton")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "QUIT"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 117.892, 387.294 )
@@ -115,7 +203,9 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Shadow" type="Area2D" parent="." groups=["Shadow"]]
+[node name="Shadow" type="Area2D" parent="." groups=[
+"Shadow",
+]]
 collision_layer = 3
 collision_mask = 3
 
@@ -124,9 +214,16 @@ position = Vector2( 516.299, 341.683 )
 scale = Vector2( 17.2874, 11.0826 )
 polygon = PoolVector2Array( 3.95934, -6.15398, 6.31439, 13.4786, 17.9793, 13.3237, 18.4757, 13.0871, 21.3327, 13.328, 20.7981, 6.42563, 4.34299, -8.43976, 4.32255, -6.37765 )
 
-[node name="Control" type="Control" parent="."]
+[node name="PauseMenu" type="Control" parent="."]
+pause_mode = 2
 margin_right = 40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
+[connection signal="about_to_show" from="Player/CanvasLayer/PausePopup" to="Player/CanvasLayer/PausePopup/ColorRect/pauseOptions/PauseResumeButton" method="_on_PausePopup_about_to_show"]
+[connection signal="pressed" from="Player/CanvasLayer/PausePopup/ColorRect/pauseOptions/PauseResumeButton" to="Player/CanvasLayer/PausePopup/ColorRect/pauseOptions/PauseResumeButton" method="_on_PauseResumeButton_pressed"]
+[connection signal="pressed" from="Player/CanvasLayer/PausePopup/ColorRect/pauseOptions/PauseQuitButton" to="Player/CanvasLayer/PausePopup/ColorRect/pauseOptions/PauseResumeButton" method="_on_PauseQuitButton_pressed"]
 [connection signal="body_entered" from="Shadow" to="Player" method="_on_Shadow_body_entered"]
 [connection signal="body_exited" from="Shadow" to="Player" method="_on_Shadow_body_exited"]
