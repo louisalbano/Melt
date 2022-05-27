@@ -21,12 +21,9 @@ polygon = PoolVector2Array( -16, -16, -8, -16, 0, -16, 16, -16, 16, 16, -16, 16 
 [node name="Level1" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 512, 301.791 )
-scale = Vector2( 7.98792, 4.70376 )
+position = Vector2( 1457.3, 779.599 )
+scale = Vector2( 22.7582, 12.1695 )
 texture = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="floor" type="StaticBody2D" parent="."]
 position = Vector2( 512, 512 )
@@ -42,8 +39,8 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="floor2" type="StaticBody2D" parent="."]
-position = Vector2( 842.921, 302.823 )
-rotation = -1.57079
+position = Vector2( 1660.51, 412.076 )
+rotation = -2.61799
 __meta__ = {
 "_edit_group_": true
 }
@@ -192,7 +189,7 @@ __meta__ = {
 }
 
 [node name="Caster" type="Node2D" parent="."]
-position = Vector2( 560, 240 )
+position = Vector2( 1050.51, 132.057 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -216,7 +213,7 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow"]
 position = Vector2( 918.208, 250.873 )
 scale = Vector2( 17.2874, 11.0826 )
-polygon = PoolVector2Array( 3.97875, -6.65465, 9.81366, 9.92868, 16.0469, 4.8646, 10.5279, -12.9609, 9.42408, -13.0622, 9.48902, -7.89686, 5.90705, -7.87213, 5.63158, -13.1002 )
+polygon = PoolVector2Array( 4.5147, -8.03377, 9.96909, 10.1297, 16.5266, 4.96741, 10.6432, -13.4828, 9.35623, -13.3872, 9.48902, -7.89686, 5.90705, -7.87213, 5.63158, -13.1002 )
 
 [node name="PauseMenu" type="Control" parent="."]
 pause_mode = 2
@@ -280,7 +277,7 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow2"]
 position = Vector2( 1564, 314.956 )
 scale = Vector2( 17.2874, 11.0826 )
-polygon = PoolVector2Array( 2.51979, -7.19714, 7.62222, 8.73706, 22.1934, 22.1745, 9.66203, -9.0202, 8.29851, -12.5651, 7.32457, -12.5651, 7.39763, -6.93566, 3.62359, -7.09586, 3.49373, -12.6663, 2.325, -12.6663 )
+polygon = PoolVector2Array( 2.3362, -6.83751, 7.62222, 8.73706, 22.1934, 22.1745, 9.66203, -9.0202, 8.29851, -12.5651, 7.32457, -12.5651, 7.39763, -6.93566, 3.62359, -7.09586, 3.49373, -12.6663, 2.325, -12.6663 )
 
 [connection signal="about_to_show" from="Player/CanvasLayer/PausePopup" to="Player/CanvasLayer/PausePopup/ColorRect/pauseOptions/PauseResumeButton" method="_on_PausePopup_about_to_show"]
 [connection signal="pressed" from="Player/CanvasLayer/PausePopup/ColorRect/pauseOptions/PauseResumeButton" to="Player/CanvasLayer/PausePopup/ColorRect/pauseOptions/PauseResumeButton" method="_on_PauseResumeButton_pressed"]
