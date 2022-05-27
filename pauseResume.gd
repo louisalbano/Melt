@@ -1,4 +1,4 @@
-extends CollisionPolygon2D
+extends Button
 
 
 # Declare member variables here. Examples:

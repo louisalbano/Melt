@@ -25,7 +25,12 @@ func _physics_process(delta):
 	if Input.is_action_pressed("left") and !ignore_control:
 		velocity.x = -move_speed
 		
-	move_and_slide(velocity, UP, false, 3)
+	if Input.is_action_just_pressed("pause"):
+		pause_popup.show()
+		resume_buton.grab_focus()
+		get_tree().paused = true
+		
+	move_and_slide(velocity, UP)
 	
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
