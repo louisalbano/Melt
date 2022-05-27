@@ -1,19 +1,16 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Menu.gd" type="Script" id=1]
-[ext_resource path="res://PixeloidTheme.tres" type="Theme" id=2]
-[ext_resource path="res://StartButton.gd" type="Script" id=3]
-[ext_resource path="res://OptionsButton.gd" type="Script" id=4]
-[ext_resource path="res://QuitButton.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/QuitButton.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/StartButton.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/OptionsButton.gd" type="Script" id=4]
+[ext_resource path="res://PixeloidTheme.tres" type="Theme" id=5]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 2 )
+theme = ExtResource( 5 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -66,7 +63,7 @@ focus_neighbour_top = NodePath("../OptionsButton")
 focus_neighbour_bottom = NodePath("../StartButton")
 size_flags_vertical = 3
 text = "Quit"
-script = ExtResource( 5 )
+script = ExtResource( 2 )
 
 [connection signal="focus_entered" from="ColorRect/Menu/StartButton" to="ColorRect/Menu/StartButton" method="_on_StartButton_focus_entered"]
 [connection signal="focus_exited" from="ColorRect/Menu/StartButton" to="ColorRect/Menu/StartButton" method="_on_StartButton_focus_exited"]

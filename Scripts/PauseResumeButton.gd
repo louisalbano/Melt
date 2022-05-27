@@ -14,7 +14,7 @@ func _on_PauseResumeButton_focus_exited():
 
 
 func _on_PauseResumeButton_pressed():
-	#hide popup and resume 
+	# hide popup and resume 
 	pause_popup.hide()
 	get_tree().paused = false
 
