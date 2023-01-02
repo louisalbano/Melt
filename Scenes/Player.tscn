@@ -25,7 +25,6 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="collision_ray" type="RayCast2D" parent="."]
-enabled = true
 cast_to = Vector2( 50, 0 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
