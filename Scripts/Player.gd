@@ -8,6 +8,7 @@ const UP = Vector2(0,-1)
 var in_shadow = 0
 var ignore_control = false
 const max_health = 100
+var direction = 0
 
 # This is how you reference the nodes created under the parent node
 onready var control_timer = get_node("control_timer")
@@ -22,8 +23,10 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("right") and !ignore_control:
 		velocity.x = move_speed
+		direction = 1
 	if Input.is_action_pressed("left") and !ignore_control:
 		velocity.x = -move_speed
+		direction = -1
 		
 	if Input.is_action_just_pressed("pause"):
 		pause_popup.show()
@@ -32,6 +35,9 @@ func _physics_process(delta):
 		
 	move_and_slide(velocity, UP)
 	
+	if is_on_floor():
+		velocity.y = 0
+
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_speed
@@ -41,17 +47,20 @@ func _physics_process(delta):
 				ignore_control = true
 
 				velocity.y = jump_speed
-				if collision_ray.is_colliding():
-					velocity.x = -1000
-				else:
-					velocity.x = 1000
+				direction = direction * -1
+				velocity.x = 1000 * direction
+				# I don't remember what this was for
+				# Leaving it in case Doug remembers
+#				if collision_ray.is_colliding():
+#					velocity.x = -1000
+#				else:
+#					velocity.x = 1000
 					
 				control_timer.start(.15)
 				
 	if control_timer.is_stopped(): # we meatboy now 
 		ignore_control = false
 			
-	
 	velocity.x = lerp(velocity.x, 0, 0.06)
 	
 	# Health is always depleteing 
@@ -62,12 +71,9 @@ func _physics_process(delta):
 	
 	health_bar.set("value", current_health )
 
-
 func _on_Shadow_body_entered(_body):
-	print('shadow relm')
 	in_shadow = 1
 
 
 func _on_Shadow_body_exited(_body):
-	print('yuh')
 	in_shadow = 0
