@@ -5,7 +5,6 @@ const GRAVITY = 4000.0
 var jump_speed = -1200
 var move_speed = 500
 const UP = Vector2(0,-1)
-var in_shadow = 0
 var ignore_control = false
 const max_health = 100
 var direction = 0
@@ -17,6 +16,7 @@ onready var pause_popup = get_node("CanvasLayer/PausePopup")
 onready var resume_button = get_node("CanvasLayer/PausePopup/ColorRect/pauseOptions/PauseResumeButton")
 onready var health_bar = get_node("Camera2D/HUD/ProgressBar")
 onready var current_health = max_health
+onready var in_shadow = 0
 
 func _physics_process(delta):
 	velocity.y += delta * GRAVITY
