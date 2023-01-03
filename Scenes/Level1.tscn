@@ -1,17 +1,20 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/images/background.png" type="Texture" id=1]
 [ext_resource path="res://Assets/images/light.png" type="Texture" id=2]
-[ext_resource path="res://Assets/images/caster.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Level1.gd" type="Script" id=5]
 [ext_resource path="res://Assets/images/Grass-1.png" type="Texture" id=6]
 [ext_resource path="res://Assets/images/Grass_Slant-1.png" type="Texture" id=7]
 
-[sub_resource type="OccluderPolygon2D" id=3]
-polygon = PoolVector2Array( -16, -16, -8, -16, 0, -16, 16, -16, 16, 16, -16, 16 )
+[sub_resource type="OccluderPolygon2D" id=9]
+polygon = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=10]
+polygon = PoolVector2Array( 0, 32, 32, 0, 32, 32 )
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
 points = PoolVector2Array( 0, 32, 32, 0, 32, 32, 32, 32 )
@@ -24,6 +27,7 @@ points = PoolVector2Array( 0, 32, 32, 0, 32, 32, 32, 32 )
 2/region = Rect2( 0, 0, 32, 32 )
 2/tile_mode = 0
 2/occluder_offset = Vector2( 0, 0 )
+2/occluder = SubResource( 9 )
 2/navigation_offset = Vector2( 0, 0 )
 2/shape_offset = Vector2( 0, 0 )
 2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -45,6 +49,7 @@ points = PoolVector2Array( 0, 32, 32, 0, 32, 32, 32, 32 )
 3/region = Rect2( 0, 0, 32, 32 )
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
+3/occluder = SubResource( 10 )
 3/navigation_offset = Vector2( 0, 0 )
 3/shape_offset = Vector2( 0, 0 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -61,6 +66,7 @@ points = PoolVector2Array( 0, 32, 32, 0, 32, 32, 32, 32 )
 3/z_index = 0
 
 [node name="Level1" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1457.3, 779.599 )
@@ -75,41 +81,12 @@ position = Vector2( 117.892, 387.294 )
 rotation = -1.5708
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( -981.545, -4150.56 )
+position = Vector2( -787, -4103 )
 scale = Vector2( 15.9204, 16.7262 )
 texture = ExtResource( 2 )
 color = Color( 1, 0.647059, 0.647059, 1 )
 shadow_enabled = true
 shadow_filter = 1
-shadow_filter_smooth = 4.4
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Caster" type="Node2D" parent="."]
-position = Vector2( 1050.51, 132.057 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Caster"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Caster/Sprite"]
-occluder = SubResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Shadow" type="Area2D" parent="." groups=["Shadow"]]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow"]
-position = Vector2( 918.208, 250.873 )
-scale = Vector2( 17.2874, 11.0826 )
-polygon = PoolVector2Array( 4.5147, -8.03377, 9.96909, 10.1297, 16.5266, 4.96741, 10.6432, -13.4828, 9.35623, -13.3872, 9.48902, -7.89686, 5.90705, -7.87213, 5.63158, -13.1002 )
 
 [node name="PauseMenu" type="Control" parent="."]
 pause_mode = 2
@@ -120,35 +97,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Caster2" type="Node2D" parent="."]
-position = Vector2( 1657.59, 206.146 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Caster2"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Caster2/Sprite"]
-occluder = SubResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Shadow2" type="Area2D" parent="." groups=["Shadow"]]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow2"]
-position = Vector2( 1564, 314.956 )
-scale = Vector2( 17.2874, 11.0826 )
-polygon = PoolVector2Array( 2.3362, -6.83751, 7.62222, 8.73706, 22.1934, 22.1745, 9.66203, -9.0202, 8.29851, -12.5651, 7.32457, -12.5651, 7.39763, -6.93566, 3.62359, -7.09586, 3.49373, -12.6663, 2.325, -12.6663 )
-
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
 tile_set = SubResource( 4 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 format = 1
-tile_data = PoolIntArray( 2, 2, 0, 39, 2, 0, 65538, 2, 0, 65575, 2, 0, 131074, 2, 0, 131103, 2, 0, 131104, 2, 0, 131105, 2, 0, 131106, 2, 0, 131107, 2, 0, 131108, 2, 0, 131111, 2, 0, 196610, 2, 0, 196644, 2, 0, 196647, 2, 0, 262146, 2, 0, 262159, 3, 0, 262160, 2, 0, 262161, 2, 0, 262162, 2, 0, 262163, 2, 0, 262164, 2, 0, 262165, 2, 0, 262166, 2, 0, 262180, 2, 0, 262183, 2, 0, 327682, 2, 0, 327694, 3, 0, 327695, 2, 0, 327696, 2, 0, 327697, 2, 0, 327698, 2, 0, 327699, 2, 0, 327700, 2, 0, 327701, 2, 0, 327702, 2, 0, 327716, 2, 0, 327719, 2, 0, 393218, 2, 0, 393229, 3, 0, 393230, 2, 0, 393231, 2, 0, 393232, 2, 0, 393233, 2, 0, 393234, 2, 0, 393235, 2, 0, 393236, 2, 0, 393237, 2, 0, 393238, 2, 0, 393252, 2, 0, 393255, 2, 0, 458754, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 2, 0, 458767, 2, 0, 458768, 2, 0, 458769, 2, 0, 458770, 2, 0, 458771, 2, 0, 458772, 2, 0, 458773, 2, 0, 458774, 2, 0, 458791, 2, 0, 524290, 2, 0, 524291, 2, 0, 524292, 2, 0, 524293, 2, 0, 524294, 2, 0, 524295, 2, 0, 524296, 2, 0, 524297, 2, 0, 524298, 2, 0, 524299, 2, 0, 524300, 2, 0, 524301, 2, 0, 524302, 2, 0, 524303, 2, 0, 524304, 2, 0, 524305, 2, 0, 524306, 2, 0, 524307, 2, 0, 524308, 2, 0, 524309, 2, 0, 524310, 2, 0, 524327, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 2, 0, 589841, 2, 0, 589842, 2, 0, 589843, 2, 0, 589844, 2, 0, 589845, 2, 0, 589846, 2, 0, 589847, 2, 0, 589848, 2, 0, 589849, 2, 0, 589850, 2, 0, 589851, 2, 0, 589852, 2, 0, 589853, 2, 0, 589854, 2, 0, 589855, 2, 0, 589856, 2, 0, 589857, 2, 0, 589858, 2, 0, 589859, 2, 0, 589860, 2, 0, 589861, 2, 0, 589862, 2, 0, 589863, 2, 0 )
+tile_data = PoolIntArray( 2, 2, 0, 39, 2, 0, 65538, 2, 0, 65575, 2, 0, 131074, 2, 0, 131095, 2, 0, 131096, 2, 0, 131097, 2, 0, 131098, 2, 0, 131103, 2, 0, 131104, 2, 0, 131105, 2, 0, 131106, 2, 0, 131107, 2, 0, 131108, 2, 0, 131111, 2, 0, 196610, 2, 0, 196615, 2, 0, 196616, 2, 0, 196617, 2, 0, 196618, 2, 0, 196644, 2, 0, 196647, 2, 0, 262146, 2, 0, 262159, 3, 0, 262160, 2, 0, 262161, 2, 0, 262162, 2, 0, 262163, 2, 0, 262164, 2, 0, 262165, 2, 0, 262166, 2, 0, 262180, 2, 0, 262183, 2, 0, 327682, 2, 0, 327694, 3, 0, 327695, 2, 0, 327696, 2, 0, 327697, 2, 0, 327698, 2, 0, 327699, 2, 0, 327700, 2, 0, 327701, 2, 0, 327702, 2, 0, 327716, 2, 0, 327719, 2, 0, 393218, 2, 0, 393229, 3, 0, 393230, 2, 0, 393231, 2, 0, 393232, 2, 0, 393233, 2, 0, 393234, 2, 0, 393235, 2, 0, 393236, 2, 0, 393237, 2, 0, 393238, 2, 0, 393252, 2, 0, 393255, 2, 0, 458754, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 2, 0, 458767, 2, 0, 458768, 2, 0, 458769, 2, 0, 458770, 2, 0, 458771, 2, 0, 458772, 2, 0, 458773, 2, 0, 458774, 2, 0, 458791, 2, 0, 524290, 2, 0, 524291, 2, 0, 524292, 2, 0, 524293, 2, 0, 524294, 2, 0, 524295, 2, 0, 524296, 2, 0, 524297, 2, 0, 524298, 2, 0, 524299, 2, 0, 524300, 2, 0, 524301, 2, 0, 524302, 2, 0, 524303, 2, 0, 524304, 2, 0, 524305, 2, 0, 524306, 2, 0, 524307, 2, 0, 524308, 2, 0, 524309, 2, 0, 524310, 2, 0, 524327, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 2, 0, 589841, 2, 0, 589842, 2, 0, 589843, 2, 0, 589844, 2, 0, 589845, 2, 0, 589846, 2, 0, 589847, 2, 0, 589848, 2, 0, 589849, 2, 0, 589850, 2, 0, 589851, 2, 0, 589852, 2, 0, 589853, 2, 0, 589854, 2, 0, 589855, 2, 0, 589856, 2, 0, 589857, 2, 0, 589858, 2, 0, 589859, 2, 0, 589860, 2, 0, 589861, 2, 0, 589862, 2, 0, 589863, 2, 0 )
