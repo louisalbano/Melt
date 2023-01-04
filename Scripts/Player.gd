@@ -16,7 +16,7 @@ onready var pause_popup = get_node("CanvasLayer/PausePopup")
 onready var resume_button = get_node("CanvasLayer/PausePopup/ColorRect/pauseOptions/PauseResumeButton")
 onready var health_bar = get_node("Camera2D/HUD/ProgressBar")
 onready var current_health = max_health
-onready var in_shadow = 0
+onready var player_in_shadow = 0
 
 func _physics_process(delta):
 	velocity.y += delta * GRAVITY
@@ -41,22 +41,14 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_speed
-			
-		else:
-			if is_on_wall(): 
-				ignore_control = true
+		elif is_on_wall(): 
+			ignore_control = true
 
-				velocity.y = jump_speed
-				direction = direction * -1
-				velocity.x = 1000 * direction
-				# I don't remember what this was for
-				# Leaving it in case Doug remembers
-#				if collision_ray.is_colliding():
-#					velocity.x = -1000
-#				else:
-#					velocity.x = 1000
-					
-				control_timer.start(.15)
+			velocity.y = jump_speed
+			direction = direction * -1
+			velocity.x = 1000 * direction
+			
+			control_timer.start(.15)
 				
 	if control_timer.is_stopped(): # we meatboy now 
 		ignore_control = false
@@ -64,16 +56,12 @@ func _physics_process(delta):
 	velocity.x = lerp(velocity.x, 0, 0.06)
 	
 	# Health is always depleteing 
-	if in_shadow:
+	if player_in_shadow:
 		current_health = current_health - .02
 	else:
 		current_health = current_health - .05
 	
 	health_bar.set("value", current_health )
 
-func _on_Shadow_body_entered(_body):
-	in_shadow = 1
-
-
-func _on_Shadow_body_exited(_body):
-	in_shadow = 0
+func _on_Level1_player_in_shadow(in_shadow):
+	player_in_shadow = in_shadow
