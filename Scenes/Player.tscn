@@ -43,7 +43,7 @@ animations = [ {
 extents = Vector2( 31.75, 32 )
 
 [sub_resource type="OccluderPolygon2D" id=2]
-polygon = PoolVector2Array( -24.249, -31.151, 28, -31.151, 29.1875, -30.125, 30.3125, -28.4375, 31.4375, -26.75, 31.8125, -25, 31.751, 32.849, -32.249, 32.849, -32, -24, -31.625, -28.0625, -30.4375, -30.1875, -28.3125, -31.125, -24.249, -31.151 )
+polygon = PoolVector2Array( 1, -24, 25, 0, 27, 22, -26, 21, -25, -2 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -53,7 +53,7 @@ position = Vector2( 16, 12 )
 scale = Vector2( 0.2, 0.14625 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 4
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
