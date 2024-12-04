@@ -213,8 +213,8 @@ script = ExtResource("1_g44os")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_e4gp1")
-animation = &"idle_icecream"
-autoplay = "idle_icecream"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
