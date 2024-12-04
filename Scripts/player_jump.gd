@@ -6,9 +6,10 @@ class_name PlayerJump
 var move_direction : Vector2
 
 func handle_variable_jump_height():
-	var is_going_up = player.velocity.y < 0 and !player.is_on_floor()
-	if Input.is_action_just_released("jump") and is_going_up:
-		player.velocity.y = 0
+	#var is_going_up = player.velocity.y < 0 and !player.is_on_floor()
+	#if Input.is_action_just_released("jump") and is_going_up:
+		#player.velocity.y = 0
+		pass
 
 func enter():
 	pass
