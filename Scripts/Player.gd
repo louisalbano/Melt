@@ -62,7 +62,7 @@ func _physics_process(delta):
 			# Switch to idle state after landing
 			if is_on_floor():
 				if direction == 0 && velocity.x == 0:
-					animated_sprite.play("idle_icecream")
+					animated_sprite.play("idle")
 				else:
 					state = STATES.RUN
 			
